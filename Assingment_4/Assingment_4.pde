@@ -47,59 +47,60 @@ void draw() {
 
 
   //new cheese will appear on screen in every 2sec
-  //display cheese from list
-  for (Cheese c : cheese) {
-      c.display();
-      c.move();
-    }
+  //display cheese from list\
+  for (int i=cheese.size()-1; i>=0; i--) {
+    Cheese c= cheese.get(i);
+    c.display();
+    c.move();
 
-    //add new cheese in list in every 2sec
-    if (t.countCheese() && cheese.size() < 5) {
-      newCheese = new Cheese();
-      //check if overlap with walls
-      boolean overlap = false;
-      for(Wall w: map.walls){
-       if(w.collision(newCheese.chLoc, newCheese.r, map.mapLoc)){
-         overlap = true;
-       } 
-      }
-      //only add new cheese when there's no overlap
-      if(overlap == false){
-      cheese.add(newCheese);
-      }
-    }
-    
     //check if mouse collides with cheese
-    if(mouse.collisionWithCheese(cheese)){
-     println("collect cheese"); 
-    }
-
-  }
-
-
-
-  //keypress for movements//
-  void keyPressed() {
-    if (key == 'w') {
-      goUp = true;
-    } else if (key == 's') {
-      goDown = true;
-    } else if (key == 'd') {
-      goRight = true;
-    } else if (key == 'a') {
-      goLeft = true;
+    if (mouse.collisionWithCheese(cheese)) {
+      cheese.remove(i);
+      println("collect cheese");
     }
   }
 
-  void keyReleased() {
-    if (key == 'w') {
-      goUp = false;
-    } else if (key == 's') {
-      goDown = false;
-    } else if (key == 'd') {
-      goRight = false;
-    } else if (key == 'a') {
-      goLeft = false;
+  //add new cheese in list in every 2sec
+  if (t.countCheese() && cheese.size() < 5) {
+    newCheese = new Cheese();
+    //check if overlap with walls
+    boolean overlap = false;
+    for (Wall w : map.walls) {
+      if (w.collision(newCheese.chLoc, newCheese.r, map.mapLoc)) {
+        overlap = true;
+      }
+    }
+    //only add new cheese when there's no overlap
+    if (overlap == false) {
+      cheese.add(newCheese);
     }
   }
-  //movement end here//
+}
+
+
+
+//keypress for movements//
+void keyPressed() {
+  if (key == 'w') {
+    goUp = true;
+  } else if (key == 's') {
+    goDown = true;
+  } else if (key == 'd') {
+    goRight = true;
+  } else if (key == 'a') {
+    goLeft = true;
+  }
+}
+
+void keyReleased() {
+  if (key == 'w') {
+    goUp = false;
+  } else if (key == 's') {
+    goDown = false;
+  } else if (key == 'd') {
+    goRight = false;
+  } else if (key == 'a') {
+    goLeft = false;
+  }
+}
+//movement end here//
