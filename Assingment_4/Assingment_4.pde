@@ -1,4 +1,4 @@
-//declare the objects// //<>//
+//declare the objects//
 Mouse mouse;
 Map map;
 ArrayList<Cheese> cheese;
@@ -76,7 +76,6 @@ void draw() {
     }
   }
 }
-
 
 
 //keypress for movements//
