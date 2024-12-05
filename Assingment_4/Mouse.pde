@@ -4,8 +4,11 @@ class Mouse {
   PVector mVel;
   PVector mAcc;
 
+  PVector prevMLoc;
+
   int r;
   int currentDirection;
+  Map map;
 
   Mouse(PVector vel, PVector acc) {
     //Player always start from the middle of the screen
@@ -13,7 +16,9 @@ class Mouse {
     mVel = vel;
     mAcc = acc;
     r = 6;
+
     currentDirection = 1;
+    map = new Map(new PVector(2, 2));
   }
 
   void display(int direction) {
@@ -37,7 +42,7 @@ class Mouse {
       //goRight
       rotate(radians(90));
     }
-    
+
     //draw the mouse
     fill(#F9DD55);
     noStroke();
