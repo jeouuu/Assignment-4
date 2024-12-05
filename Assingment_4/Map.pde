@@ -6,7 +6,6 @@ class Map {
   int mapSize;
   ArrayList<Wall> walls;
 
-
   Map(PVector vel) {
     //map always set from the middle,
     //and move in the same speed opposite direction as the player(to create the illusion of camera movement).
@@ -29,7 +28,6 @@ class Map {
     rectMode(CENTER);
     rect(mapLoc.x, mapLoc.y+20, 800, 760);
 
-
     //wood floor texture
     int offset = 0;
     for (int j=0; j<800; j+=20) {
@@ -43,7 +41,7 @@ class Map {
       offset-=20;
     }
 
-    //display the walls here
+    //display the walls here in the arraylist
     for (Wall w : walls) {
       w.display(mapLoc);
     }

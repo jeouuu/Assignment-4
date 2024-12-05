@@ -44,7 +44,6 @@ void draw() {
 
 
 
-
 //keypress for movements//
 void keyPressed() {
   if (key == 'w') {

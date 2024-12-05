@@ -20,14 +20,20 @@ class Wall {
 
 
   boolean collision(PVector mLoc, int mR, PVector mapLoc) {
+    //check collision between mouse and walls
+    //reference from the collision detection website: https://www.jeffreythompson.org/collision-detection/circle-rect.php
+ 
+    //temporary variables for testing
     float testX = mLoc.x;
     float testY = mLoc.y;
 
+    //which edge is touched?
     if (mLoc.x < x+mapLoc.x)         testX = x+mapLoc.x;      // test left edge
     else if (mLoc.x > x+mapLoc.x+wid) testX = x+mapLoc.x+wid;   // right edge
     if (mLoc.y < y+mapLoc.y)         testY = y+mapLoc.y;      // top edge
     else if (mLoc.y > y+mapLoc.y+hei) testY = y+mapLoc.y+hei;   // bottom edge
-
+    
+    //get distance from closest edges
     float distX =  mLoc.x-testX;
     float distY = mLoc.y-testY;
     float distance = sqrt( (distX*distX) + (distY*distY) );
