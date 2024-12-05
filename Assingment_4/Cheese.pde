@@ -27,9 +27,6 @@ class Cheese {
     circle(chLoc.x+5, chLoc.y+5, 4);
   }
 
-  void collision() {
-  }
-
   void move() {
     if (goUp==true) {
       chLoc.y+=chVel.y;

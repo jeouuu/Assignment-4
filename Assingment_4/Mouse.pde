@@ -68,6 +68,17 @@ class Mouse {
 
     popMatrix();
   }
+  
+  boolean collisionWithCheese(ArrayList<Cheese> cheese){
+    float dist;
+    for(Cheese c: cheese){
+      dist = dist(mLoc.x,mLoc.y,c.chLoc.x,c.chLoc.y);
+      if(dist<r+c.r){
+        return true;
+      }
+    }
+    return false;
+  }
 
   void move() {
     //move the mouse and change its direction relate on key press

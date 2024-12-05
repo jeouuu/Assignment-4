@@ -68,7 +68,11 @@ void draw() {
       cheese.add(newCheese);
       }
     }
-
+    
+    //check if mouse collides with cheese
+    if(mouse.collisionWithCheese(cheese)){
+     println("collect cheese"); 
+    }
 
   }
 
