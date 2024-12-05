@@ -19,7 +19,7 @@ class Mouse {
   void display(int direction) {
     //check the edges, prevent player move out of the screen
     mLoc.x = constrain(mLoc.x, 0, 400);
-    mLoc.y = constrain(mLoc.y, 0+10, 400-10);
+    mLoc.y = constrain(mLoc.y, 0+50, 400-10);
 
     //rotate the mouse base on direction
     pushMatrix();
@@ -37,7 +37,8 @@ class Mouse {
       //goRight
       rotate(radians(90));
     }
-
+    
+    //draw the mouse
     fill(#F9DD55);
     noStroke();
 
@@ -47,7 +48,7 @@ class Mouse {
     triangle(0-6, 0, 0, 0-18, 0+6, 0);
 
     //ears
-    fill(#FAC46D);
+    fill(#FFB108);
     circle(0-6, 0-6, 7);
     circle(0+6, 0-6, 7);
 
