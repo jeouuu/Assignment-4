@@ -1,7 +1,8 @@
-//declare the objects//
+//declare the objects// //<>//
 Mouse mouse;
 Map map;
 ArrayList<Cheese> cheese;
+Cheese newCheese;
 Timer t;
 //objects end here//
 
@@ -12,7 +13,6 @@ boolean goLeft;
 boolean goRight;
 //booleans end here//
 
-boolean canMove = true;
 
 void setup() {
   size(400, 400);
@@ -21,11 +21,9 @@ void setup() {
   //initialize the object classes
   mouse = new Mouse(new PVector(2, 2), new PVector(0, 0));
   map = new Map(new PVector(2, 2));
-  
   cheese = new ArrayList<Cheese>();
-  
+
   t = new Timer();
-  
 }
 
 void draw() {
@@ -39,7 +37,6 @@ void draw() {
     if (wall.collision( mouse.mLoc, mouse.r, map.mapLoc)) {
       //if mouse touch the walls, reset position in the middle of the screen
       mouse.mLoc = new PVector(width/2, height/2);
-      println("overlap");
       break;
     }
   }
@@ -47,44 +44,58 @@ void draw() {
   //draw the mouse and move it
   mouse.move();
   mouse.display(mouse.currentDirection);
-  
-  //a new cheese will appear on screen in every 2sec
+
+
+  //new cheese will appear on screen in every 2sec
   //display cheese from list
-  for(Cheese c : cheese){
-   c.display();
-   c.move();
+  for (Cheese c : cheese) {
+      c.display();
+      c.move();
+    }
+
+    //add new cheese in list in every 2sec
+    if (t.countCheese() && cheese.size() < 5) {
+      newCheese = new Cheese();
+      //check if overlap with walls
+      boolean overlap = false;
+      for(Wall w: map.walls){
+       if(w.collision(newCheese.chLoc, newCheese.r, map.mapLoc)){
+         overlap = true;
+       } 
+      }
+      //only add new cheese when there's no overlap
+      if(overlap == false){
+      cheese.add(newCheese);
+      }
+    }
+
+
   }
-  //add new cheese in list in every 2sec
-  if(t.countCheese() && cheese.size() < 5){
-    cheese.add(new Cheese());
-  }
-  
-}
 
 
 
-//keypress for movements//
-void keyPressed() {
-  if (key == 'w') {
-    goUp = true;
-  } else if (key == 's') {
-    goDown = true;
-  } else if (key == 'd') {
-    goRight = true;
-  } else if (key == 'a') {
-    goLeft = true;
+  //keypress for movements//
+  void keyPressed() {
+    if (key == 'w') {
+      goUp = true;
+    } else if (key == 's') {
+      goDown = true;
+    } else if (key == 'd') {
+      goRight = true;
+    } else if (key == 'a') {
+      goLeft = true;
+    }
   }
-}
 
-void keyReleased() {
-  if (key == 'w') {
-    goUp = false;
-  } else if (key == 's') {
-    goDown = false;
-  } else if (key == 'd') {
-    goRight = false;
-  } else if (key == 'a') {
-    goLeft = false;
+  void keyReleased() {
+    if (key == 'w') {
+      goUp = false;
+    } else if (key == 's') {
+      goDown = false;
+    } else if (key == 'd') {
+      goRight = false;
+    } else if (key == 'a') {
+      goLeft = false;
+    }
   }
-}
-//movement end here//
+  //movement end here//

@@ -5,16 +5,14 @@ class Cheese {
 
   int r;
 
-
   Cheese() {
     chLoc = new PVector(random(width), random(height));
     chVel =  new PVector(2, 2);
+
     r = 4;
   }
 
   void display() {
-    
-    
     //draw the cheese
     fill(249, 221, 85);
     noStroke();
