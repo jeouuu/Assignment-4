@@ -2,7 +2,6 @@
 Mouse mouse;
 Map map;
 ArrayList<Cheese> cheese;
-Timer t;
 //objects end here//
 
 //Booleans for movement//
@@ -23,9 +22,6 @@ void setup() {
   map = new Map(new PVector(2, 2));
   
   cheese = new ArrayList<Cheese>();
-  
-  t = new Timer();
-  
 }
 
 void draw() {
@@ -47,18 +43,6 @@ void draw() {
   //draw the mouse and move it
   mouse.move();
   mouse.display(mouse.currentDirection);
-  
-  //a new cheese will appear on screen in every 2sec
-  //display cheese from list
-  for(Cheese c : cheese){
-   c.display();
-   c.move();
-  }
-  //add new cheese in list in every 2sec
-  if(t.countCheese()){
-    cheese.add(new Cheese());
-  }
-  
 }
 
 
