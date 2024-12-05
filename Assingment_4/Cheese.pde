@@ -13,7 +13,8 @@ class Cheese {
   }
 
   void display() {
-
+    
+    
     //draw the cheese
     fill(249, 221, 85);
     noStroke();

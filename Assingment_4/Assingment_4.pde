@@ -55,7 +55,7 @@ void draw() {
    c.move();
   }
   //add new cheese in list in every 2sec
-  if(t.countCheese()){
+  if(t.countCheese() && cheese.size() < 5){
     cheese.add(new Cheese());
   }
   
