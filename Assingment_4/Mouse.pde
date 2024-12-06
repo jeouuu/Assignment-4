@@ -83,19 +83,38 @@ class Mouse {
 
   void move() {
     //move the mouse and change its direction relate on key press
-
+    //going to incorporate the acceleration usage here
     if (goUp==true) {
       currentDirection = 1;
-      mLoc.y-=mVel.y;
+      mAcc.y = -0.1;
     } else if (goDown==true) {
       currentDirection = 2;
-      mLoc.y+=mVel.y;
-    } else if (goLeft==true) {
+      mAcc.y = 0.1;
+    } else {
+      //when there's no key pressing acceleration is 0
+      mAcc.y = 0;
+    }
+
+    if (goLeft==true) {
       currentDirection = 3;
-      mLoc.x-=mVel.x;
+      mAcc.x = -0.1;
     } else if (goRight==true) {
       currentDirection = 4;
-      mLoc.x+=mVel.x;
+      mAcc.x = 0.1;
+    } else {
+      //when there's no key pressing acceleration is 0
+      mAcc.x = 0;
     }
+    //add the acceleration to the velocity to move the mouse
+    mVel.add(mAcc);
+    //if it is going left/right, slow down the verticle velocity. Vice verse
+    //simulating the friction force
+    if (!goUp &&!goDown) {
+      mVel.y*=0.8;
+    }
+    if (!goLeft &&!goRight) {
+      mVel.x*=0.8;
+    }
+    mLoc.add(mVel);
   }
 }
