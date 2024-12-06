@@ -3,7 +3,8 @@ class RestartScreen {
   RestartScreen() {
   }
 
-  void display() {
+  void displayWin() {
+    //draw the restart screen for win
 
     fill(252, 235, 154);
     rect(0, 0, width, height);

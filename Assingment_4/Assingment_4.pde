@@ -1,4 +1,4 @@
-//declare the objects// //<>// //<>//
+//declare the objects// //<>// //<>// //<>//
 Mouse mouse;
 Map map;
 ArrayList<Cheese> cheese;
@@ -26,7 +26,7 @@ void setup() {
   gameState = 1;
 
   //initialize the object classes
-  mouse = new Mouse(new PVector(2, 2), new PVector(0, 0));
+  mouse = new Mouse();
   map = new Map(new PVector(2, 2));
   cheese = new ArrayList<Cheese>();
   t = new Timer();
@@ -47,11 +47,12 @@ void draw() {
     map.display();
     map.move();
 
+
     //check collisions between mouse and walls
     for (Wall wall : map.walls) {
       if (wall.collision( mouse.mLoc, mouse.r, map.mapLoc)) {
-        //if mouse touch the walls, reset position in the middle of the screen
-        mouse.mLoc = new PVector(width/2, height/2);
+        //if mouse touch the walls, set gamestate ==3
+        gameState = 3;
         break;
       }
     }
@@ -100,10 +101,17 @@ void draw() {
   }
   
   if(gameState ==2){
-    reScreen.display();
+    //gamestate2 == win => restart
+    reScreen.displayWin();
+    //check if the restart button is pressed
     if(button){
       r.reset();
     }
+  }
+  
+   if(gameState ==3){
+    //gamestate3 == lose => reset the game
+      r.reset();
   }
 }
 

@@ -11,10 +11,12 @@ class Wall {
   }
 
   void display(PVector mapLoc) {
+    //display the walls
     fill(150, 116, 98);
     stroke(64, 20, 9);
     strokeWeight(4);
     rectMode(CORNER);
+    //add the map location and the wall location so the walls also move in related to the mouse
     rect(x+mapLoc.x, y+mapLoc.y, wid, hei);
   }
 

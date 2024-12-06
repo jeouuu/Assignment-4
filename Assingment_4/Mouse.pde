@@ -10,11 +10,12 @@ class Mouse {
   int currentDirection;
   Map map;
 
-  Mouse(PVector vel, PVector acc) {
+  Mouse() {
     //Player always start from the middle of the screen
     mLoc = new PVector(width/2, height/2);
-    mVel = vel;
-    mAcc = acc;
+    mVel = new PVector(2, 2);
+    mAcc = new PVector(0, 0);
+    ;
     r = 6;
 
     currentDirection = 1;
@@ -68,12 +69,12 @@ class Mouse {
 
     popMatrix();
   }
-  
-  boolean collisionWithCheese(ArrayList<Cheese> cheese){
+
+  boolean collisionWithCheese(ArrayList<Cheese> cheese) {
     float dist;
-    for(Cheese c: cheese){
-      dist = dist(mLoc.x,mLoc.y,c.chLoc.x,c.chLoc.y);
-      if(dist<r+c.r){
+    for (Cheese c : cheese) {
+      dist = dist(mLoc.x, mLoc.y, c.chLoc.x, c.chLoc.y);
+      if (dist<r+c.r) {
         return true;
       }
     }
@@ -82,6 +83,7 @@ class Mouse {
 
   void move() {
     //move the mouse and change its direction relate on key press
+
     if (goUp==true) {
       currentDirection = 1;
       mLoc.y-=mVel.y;
