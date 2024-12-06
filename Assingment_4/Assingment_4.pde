@@ -101,6 +101,7 @@ void draw() {
   if(gameState ==2){
     reScreen.display();
   }
+  reScreen.display();
 }
 
 
