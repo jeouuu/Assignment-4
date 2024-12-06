@@ -17,6 +17,7 @@ boolean goRight;
 
 int gameState;
 int collectCheese;
+boolean button;
 
 void setup() {
   size(400, 400);
@@ -100,10 +101,18 @@ void draw() {
   
   if(gameState ==2){
     reScreen.display();
+    if(button){
+      r.reset();
+    }
   }
-  reScreen.display();
 }
 
+//press button
+void mousePressed() {
+  if (mouseX>140 && mouseX<260 && mouseY >220 && mouseY <270) {
+    button =!button;
+  }
+}
 
 //keypress for movements//
 void keyPressed() {
