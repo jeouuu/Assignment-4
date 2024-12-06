@@ -13,5 +13,6 @@ class Reset {
     map = new Map(new PVector(2, 2));
     cheese = new ArrayList<Cheese>();
     t = new Timer();
+    collectCheese = 0;
   }
 }

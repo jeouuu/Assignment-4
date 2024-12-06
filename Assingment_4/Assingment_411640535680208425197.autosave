@@ -1,11 +1,10 @@
-//declare the objects// //<>// //<>//
+//declare the objects//
 Mouse mouse;
 Map map;
 ArrayList<Cheese> cheese;
 Cheese newCheese;
 Timer t;
 Reset r;
-RestartScreen reScreen;
 //objects end here//
 
 //Booleans for movement//
@@ -16,7 +15,6 @@ boolean goRight;
 //booleans end here//
 
 int gameState;
-int collectCheese;
 
 void setup() {
   size(400, 400);
@@ -29,8 +27,6 @@ void setup() {
   map = new Map(new PVector(2, 2));
   cheese = new ArrayList<Cheese>();
   t = new Timer();
-  collectCheese = 0;
-  reScreen = new RestartScreen();
 
   r = new Reset();
   r.reset();
@@ -61,7 +57,7 @@ void draw() {
 
 
     //new cheese will appear on screen in every 2sec
-    //display cheese from list\
+    //display cheese from list
     for (int i=cheese.size()-1; i>=0; i--) {
       Cheese c= cheese.get(i);
       c.display();
@@ -71,13 +67,6 @@ void draw() {
       if (mouse.collisionWithCheese(cheese)) {
         cheese.remove(i);
         println("collect cheese");
-        collectCheese++;
-        
-        //check if 5 cheese have been collected
-        if(collectCheese >= 5){
-          //if yse jump to gameState 2 == restartScreen
-          gameState = 2;
-        }
       }
     }
 
@@ -96,10 +85,6 @@ void draw() {
         cheese.add(newCheese);
       }
     }
-  }
-  
-  if(gameState ==2){
-    reScreen.display();
   }
 }
 
